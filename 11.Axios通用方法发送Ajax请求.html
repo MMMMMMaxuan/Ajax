@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Axios通用方法发送Ajax请求</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+<button>Axios通用方法发送Ajax请求</button>
+<script>
+    btn = document.getElementsByTagName('button')[0];
+
+    //配置baseURL
+    axios.defaults.baseURL = 'http://127.0.0.1:8000';
+
+    btn.onclick = function () {
+        axios({
+            //请求方法
+            method: 'POST',
+            //url
+            url: '/axios-server',
+            //url参数
+            params: {
+                vip: 1,
+                level: 2
+            },
+            //头信息
+            headers: {
+                a: 1,
+                b: 2
+            },
+            //请求体参数
+            data: {
+                username: 'admin',
+                password: 'admin'
+            }
+        }).then(response => {
+            console.log(response);
+        })
+    }
+</script>
+</body>
+</html>

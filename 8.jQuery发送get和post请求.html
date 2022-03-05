@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery发送get和post请求</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<button>发送get请求</button>
+<button>发送post请求</button>
+<script>
+    //get和post请求的参数为（按顺序）：请求地址、参数、成功的回调函数、响应体结果
+    $('button').eq(0).click(function () {
+        $.get('http://127.0.0.1:8000/jquery-server', {a: 1, b: 2}, function (data) {
+            console.log(data);
+        }, 'json');
+    })
+
+    $('button').eq(1).click(function () {
+        $.post('http://127.0.0.1:8000/jquery-server', {a: 1, b: 2}, function (data) {
+            console.log(data);
+        }, 'json');
+    })
+</script>
+</body>
+</html>

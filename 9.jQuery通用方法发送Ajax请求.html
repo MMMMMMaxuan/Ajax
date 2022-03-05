@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery通用方法发送Ajax请求</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+<button>通用方法发送Ajax请求</button>
+<script>
+    $('button').click(function () {
+        console.log("jinru");
+        $.ajax({
+            //url
+            url: 'http://127.0.0.1:8000/jquery-server',
+            //参数
+            data: {a: 1, b: 2},
+            //请求类型
+            type: 'GET',
+            //响应体结果
+            dataType: 'json',
+            //成功的回调函数
+            success: function (data) {
+                console.log(data);
+            },
+            //超时时间
+            timeout: 2000,
+            //失败的回调
+            error: function () {
+                console.log("出错啦！");
+            }
+        })
+    })
+</script>
+</body>
+</html>

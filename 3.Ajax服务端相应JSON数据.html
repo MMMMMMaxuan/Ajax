@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax服务端相应JSON数据</title>
+</head>
+<style>
+    div {
+        width: 200px;
+        height: 150px;
+        border: 1px solid #cd6969;
+    }
+</style>
+<body>
+<div id="result"></div>
+<script>
+    const result = document.getElementById('result');
+    //绑定键盘按下事件
+    window.onkeydown = function () {
+        const xhr = new XMLHttpRequest();
+        //自动转换
+        //设置响应体数据的类型
+        xhr.responseType = 'json';
+        xhr.open('GET', 'http://localhost:8000/json-server');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    //手动对数据进行转换
+                    // let data = JSON.parse(xhr.response);
+                    // console.log(data);
+                    console.log(xhr.response);   //数据类型为JSON格式
+                    result.innerHTML = xhr.response;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

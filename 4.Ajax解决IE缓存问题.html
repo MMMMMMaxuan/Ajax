@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax解决IE缓存问题</title>
+</head>
+<body>
+<button>Ajax解决IE缓存问题</button>
+<script>
+    const btn = document.getElementsByTagName('button')[0];
+    btn.addEventListener('click', function () {
+        const xhr = new XMLHttpRequest()
+        //在url后面拼接当前时间时间戳Date.now()，即每次点击都是不一样的请求，网页不会走缓存，而是向服务器发送新的请求
+        xhr.open('GET', 'http://localhost:8000/ie?t=' + Date.now())
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    console.log(xhr.response);
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

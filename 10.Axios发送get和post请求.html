@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.js"></script>
+</head>
+<body>
+<button>axios发送get请求</button>
+<button>axios发送post请求</button>
+<script>
+    const btns = document.querySelectorAll('button');
+
+    //配置baseURL
+    axios.defaults.baseURL = 'http://127.0.0.1:8000';
+
+    //参数格式
+    // axios.get(url[, config])
+    // axios.post(url[, data[, config]])
+
+    btns[0].onclick = function () {
+        //get请求
+        axios.get('/axios-server', {
+            //url参数
+            params: {
+                id: 100,
+                vip: 7
+            },
+            //请求头信息
+            headers: {
+                name: 'nihao',
+                age: 20
+            }
+        }).then(value => {
+            //回调函数
+            console.log(value);
+        })
+    }
+
+    btns[1].onclick = function () {
+        axios.post('/axios-server', {
+                //请求体
+                username: 'admin',
+                password: 'admin'
+            },
+            //其他参数
+            {
+                //url
+                params: {
+                    id: 200,
+                    vip: 9
+                },
+                //请求头参数
+                headers: {
+                    height: 180,
+                    weight: 180,
+                }
+            }
+        ).then(value => {
+            console.log(value);
+        })
+    }
+
+</script>
+</body>
+</html>
